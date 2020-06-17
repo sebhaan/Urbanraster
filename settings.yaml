@@ -1,0 +1,75 @@
+# Specify settings, filenames and global model parameters here
+
+
+###raster input files for rasterization:
+# Input path for preprossed files:
+inpath_preprocessed: '../Data/Preprocessed/'
+# Define feature names to rasterize, must match header names in input data files
+features: ['VERY_LOW', 'LOW', 'MID', 'HIGH', 'VERY_HIGH', 'TOTAL']
+# raster pixel size
+pixelsize: 100
+# indexname of polygon regions (should be the same label in input polygons and data files)
+indexname: 'SA1_CODE7' 
+# Polygon boundary Input files (preprocessed)
+name_poly06: 'SA1_2006_NSW_meters.gpkg'
+name_poly11: 'SA1_2011_AUST_meters.gpkg'
+name_poly16: 'SA1_2016_AUST_meters.gpkg'
+# income Data Input files (prepocessed)
+name_data06: 'NEWPERC_INC06.csv'
+name_data11: 'NEWPERC_INC11.csv'
+name_data16: 'NEWPERC_INC16.csv'
+# Define shape or boundary for region mask
+mask: '../Data/SYD_SHAPE.gpkg'
+# define output paths for raster
+outpath06: '../Results/Raster_2006/'
+outpath11: '../Results/Raster_2011/'
+outpath16: '../Results/Raster_2016/'
+
+### Raster change settings:
+# calculate Percentage_incbin_t2 - Percentage_incbin_t1 (recommended):
+calc_change: True
+# calculate (Population_incbin_t2 - Population_incbin_t1) / Population_incbin_t1   (not recommened)
+# also needs addidtional clipping if Population_incbin_t1 = 0:
+calc_change2: False
+# define output path for change files, e.g. income 2016 - income 2006
+outpath_change: '../Results/Rasterchange/'
+
+
+### Visualisation settings:
+make_plots2d: True
+# creates additional zoom image for syndey center (change coordinates below for different zoom region)
+zbox: [151.13, 151.3, -33.94, -33.775] 
+
+# for 3D interactive html plot:
+make_webmap3d: True
+# filename for Mapbox key.
+# (Register with Mapbox, and you can find your Mapbox access token here: https://account.mapbox.com/access-tokens/
+fname_mbox: '../mbox.txt' #  put your key in your private file
+# be careful not to share keyfile with code, Mapbox can also be setup in terminal with export MAPBOX_API_KEY=<mapbox-key-here>
+# ee also https://docs.mapbox.com/help/troubleshooting/how-to-use-mapbox-securely/
+# specify which file to map:
+infname_3D: "../Results/Raster_2006/raster_100m_POPDENS_100m.tif"
+#outpath and outfile name
+outpath_3D: "../Results/Raster_2006/"
+outname_3D: "demo_raster_100m_POPDENS_100m"
+# how to name feature in plot:
+featurename_3D: "PopDens"
+# data only above treshold will be included (to make output file smaller). Set to None if no treshold should be applied
+zfilter_3D: 0.01
+
+
+### Some Preprocessing options, can be run seperately if required:
+# See preprocess_income.py for filename settings and feature parameters seetings
+process_income: True
+inpath: "../Data/"
+outpath_preproc_inc: '../Data/Preprocessed/'
+# Make plots of preprcoessing caulcution:
+plot_exp: True
+# See preprocess_geodata.py for filename setinsg and feature parameters seetings
+process_geodata: False
+#output diretcory for files
+outpath_preproc_geo: '../Data/Preprocessed/'
+# Preprocess all (recommended, filtered later for sydney)
+preprocess_all: True
+# or only sydney
+preprocess_syd: False
