@@ -71,9 +71,6 @@ For changing preprocessing scripts see:
 Note that for running preprocessing scripts the filenames for the unprocessed input data has to set in the proprocess_income.py file.
 
 
-For questions please contact: sebastian.haan@sydney.edu.au
-
-
 ## EXAMPLES
 
 
